@@ -1,0 +1,47 @@
+// Define the box size in pixels
+$box-size: 45px;
+
+// Define the color palette
+$colors: (
+  black: black,
+  white: white
+);
+
+// Define the font sizes in rem
+$font-sizes: (
+  1: 1rem,
+  2: 2rem,
+  3: 3rem
+);
+
+// Generate the classes for font sizes
+@each $size, $rem in $font-sizes {
+  .fs-#{$size}rem {
+    font-size: $rem;
+  }
+}
+
+// Generate the styles for the boxes
+@each $color, $value in $colors {
+  $darkened-color: darken($value, 5);
+  $lightened-color: lighten($value, 5);
+
+  .box-#{$color} {
+    background-color: $value;
+    color: $lightened-color;
+
+    @if $color == "black" {
+      color: $lightened-color;
+    } @else if $color == "white" {
+      color: $darkened-color;
+    }
+
+    .box-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: $box-size;
+      height: $box-size;
+    }
+  }
+}

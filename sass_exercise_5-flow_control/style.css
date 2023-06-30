@@ -1,0 +1,19 @@
+$base-color: #000;
+$highlight-color: #fff;
+$font-size-multiplier: 5;
+
+@for $i from 1 through 3 {
+  @each $color in ($base-color, $highlight-color) {
+    .fs-#{$i}rem {
+      font-size: #{$i}rem;
+      background-color: $color;
+      color: if(lightness($color) > 50, darken($color, $font-size-multiplier * $i), lighten($color, $font-size-multiplier * $i));
+      width: #{$i * 45}px;
+      height: #{$i * 45}px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+  }
+}
